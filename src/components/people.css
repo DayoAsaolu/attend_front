@@ -1,0 +1,49 @@
+.People {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 120px;
+    text-align: center;
+}
+
+.People input, select{
+    width: 30%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.People button {
+    width: 30%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.People .AddFamily {
+    width: 15%;
+    height: 42px;
+    border-width: thin;
+    background: white;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px auto 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.People h3 {
+    color: white;
+}
