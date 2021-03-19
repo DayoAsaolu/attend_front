@@ -10,7 +10,8 @@ class People extends React.Component {
       this.state = {
         display: 'block',
         value: 'Children',
-        children: []
+        children: [],
+        passChild: []
       }
     }
     /**
@@ -49,14 +50,24 @@ class People extends React.Component {
         const lastName = e.target.elements.lname.value.trim();
         const group = this.state.value;
         //this.getUsers(name, password);
+        Array.prototype.forEach.call(e.target.elements, (element) => {
+          console.log(element.value);
+        })
     }
 
     handleSelectChange = (e) => {
       this.setState({value: e.target.value});
     }
 
+    handleReturnedFamily = (value) => {
+      alert(value);
+      if(value){
+        alert(value);
+      }
+    }
+
     handleShowFamily = () => {
-      this.setState({children: [...this.state.children,<Family />]
+      this.setState({children: [...this.state.children,<Family family={this.handleReturnedFamily}/>]
       });
     }
 
