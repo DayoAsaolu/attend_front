@@ -3,7 +3,7 @@ import './people.css'
 
 const RadioOptions = (props) => (
     <div onChange={props.onChange}>
-        {props.options.map((option) => <div><input type="radio" value={option} name={option}/><label>{option}</label></div>)}
+        {props.options.map((option, index) => <div><input type="radio" value={option} name={props.name}/><label>{option}</label></div>)}
     </div>
 )
 

@@ -10,6 +10,16 @@
     width: 54%;
 }
 
+.People form .Radios .col {
+    width: 50%;
+    float: left;
+}
+
+.People form .Radios .col1 {
+    width: 50%;
+    float: right;
+}
+
 .People input[type=text], select{
     width: 50%;
     height: 42px;

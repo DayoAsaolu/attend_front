@@ -72,14 +72,16 @@ class People extends React.Component {
                 <form onSubmit={this.handleClickSignUp}>
                     <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
-                    <h4>Group</h4> <br />
-                    <RadioOptions onChange={this.handleSelectChange} options={group} />
-                    <h4>Gender</h4> <br />
-                    <RadioOptions onChange={this.handleSexChange} options={sex} />
+                    <div className="Radios">
+                      <h4>Group</h4> <br />
+                      <RadioOptions onChange={this.handleSelectChange} options={group} name="group" />
+                      <h4>Gender</h4> <br />
+                      <RadioOptions onChange={this.handleSexChange} options={sex} name="gender" />
+                    </div>
                     <h4>Is today your first time? </h4> <br />
-                    <RadioOptions onChange={this.handleComers} options={booleanValue} />
+                    <RadioOptions onChange={this.handleComers} options={booleanValue} name="firstTimer" />
                     <h4>Add Family/Accompanying Members? </h4> <br />
-                    <RadioOptions onChange={this.handleAddFamily} options={booleanValue} />
+                    <RadioOptions onChange={this.handleAddFamily} options={booleanValue} name="company"/>
                     {this.state.addFamilyMember && <Family passFamilyMember={this.handleOthers}/>}
                     <button>Register</button>
                 </form>
