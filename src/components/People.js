@@ -1,5 +1,10 @@
 import React from 'react'
-import Family from './AddFamily'
+
+import Family from './AddFamily';
+import {group, sex, booleanValue} from './Fixtures';
+import SelectOptions from './SelectOptions';
+import RadioOptions from './RadioOptions';
+
 import './people.css'
 
 class People extends React.Component {
@@ -8,84 +13,74 @@ class People extends React.Component {
       super(props)
 
       this.state = {
-        display: 'block',
-        value: 'Children',
-        children: [],
+        firstName: undefined,
+        lastName: undefined,
+        value: undefined,
+        gender: undefined,
+        firstTime: undefined,
+        addFamilyMember: false,
         passChild: []
       }
     }
-    /**
-    async getUsers(name, password) {
-        // With error handling
-        let body = {
-          'user': name,
-          'pass': password
-        };
-        fetch("http://127.0.0.1:5000/auth", {
-          method: "POST",
-          body: JSON.stringify(body),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8"
-          }
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data['name']);
-          this.props.passName(data['name'])
-          data['message'] === 200 ? this.props.history.push('/welcome') : this.setState(() => ({error: !this.state.error}))
-        })
-          .catch(error => {
-            console.error(
-              "There has been a problem with your fetch operation:",
-              error
-            );
-          });
-    }
-    **/
+
 
     handleClickSignUp = (e) => {
         e.preventDefault();
-        console.log(e.target.elements)
-        const firstName = e.target.elements.fname.value.trim();
-        const lastName = e.target.elements.lname.value.trim();
-        const group = this.state.value;
-        //this.getUsers(name, password);
-        Array.prototype.forEach.call(e.target.elements, (element) => {
-          console.log(element.value);
-        })
+        console.log(this.state)
     }
 
     handleSelectChange = (e) => {
       this.setState({value: e.target.value});
     }
 
-    handleReturnedFamily = (value) => {
-      alert(value);
-      if(value){
-        alert(value);
+    handleSexChange = (e) => {
+      this.setState({gender: e.target.value});
+    }
+  
+    handleOthers = (val) => {
+      if(val){
+        this.setState(prevState => ({
+          passChild: [...prevState.passChild, val]
+        }))
       }
     }
 
-    handleShowFamily = () => {
-      this.setState({children: [...this.state.children,<Family family={this.handleReturnedFamily}/>]
-      });
+    handleAddFamily = (e) => {
+      const familyValue = e.target.value === "Yes" ? true : false;
+      this.setState({addFamilyMember: familyValue});
+    }
+
+    handleComers = (e) => {
+      const timeValue = e.target.value === "Yes" ? true : false;
+      this.setState({firstTime: timeValue});
+    }
+
+    handleFirstName = (e) => {
+      const firstName = e.target.value;
+      this.setState({ firstName });
+    }
+
+    handleLastName = (e) => {
+      const lastName = e.target.value;
+      this.setState({ lastName });
     }
 
     render(){
         return (
-            <div className="People" style={{display: this.state.display }}>
+            <div className="People">
+                <h1>Welcome to the Attendance Page</h1>
                 <form onSubmit={this.handleClickSignUp}>
-                    <input type="text" placeholder="First Name" name="fname" required/> <br />
-                    <input type="text" placeholder="Last Name" name="lname" required/> <br />
-                    <select value={this.state.value} onChange={this.handleSelectChange}>
-                        <option key="children">Children</option>
-                        <option key="youth">Youth</option>
-                        <option key="campus">Campus</option>
-                        <option key="adult">Adult</option>
-                    </select> <br />
-                    <h3>Family/Accompanying Members</h3>
-                    <div className="AddFamily" onClick={this.handleShowFamily}> + ADD FAMILY MEMBER</div>
-                    {this.state.children.map(child => child)}
+                    <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
+                    <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
+                    <h4>Group</h4> <br />
+                    <RadioOptions onChange={this.handleSelectChange} options={group} />
+                    <h4>Gender</h4> <br />
+                    <RadioOptions onChange={this.handleSexChange} options={sex} />
+                    <h4>Is today your first time? </h4> <br />
+                    <RadioOptions onChange={this.handleComers} options={booleanValue} />
+                    <h4>Add Family/Accompanying Members? </h4> <br />
+                    <RadioOptions onChange={this.handleAddFamily} options={booleanValue} />
+                    {this.state.addFamilyMember && <Family passFamilyMember={this.handleOthers}/>}
                     <button>Register</button>
                 </form>
             </div>

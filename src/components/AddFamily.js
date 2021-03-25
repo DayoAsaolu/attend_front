@@ -1,4 +1,8 @@
 import React from 'react';
+
+import {group, sex, relation} from './Fixtures';
+import SelectOptions from './SelectOptions';
+
 import './people.css'
 
 class Family extends React.Component{
@@ -6,10 +10,10 @@ class Family extends React.Component{
         super(props)
   
         this.state = {
-          nameText: props.family.fullName,
-          gender: props.family.gender,
-          relation: props.family.relation,
-          group: props.family.group
+          nameText: undefined,
+          gender: undefined,
+          relation: undefined,
+          group: undefined
         }
     }
     
@@ -19,6 +23,7 @@ class Family extends React.Component{
     };
 
     handleSexChange = (e) => {
+        console.log(e.target.value)
         this.setState({gender: e.target.value});
     };
 
@@ -30,29 +35,39 @@ class Family extends React.Component{
         this.setState({group: e.target.value});
     };
 
+    clearForm = () => {
+        this.setState(() => ({nameText: ''}));
+        this.setState(() => ({gender: ''}));
+        this.setState(() => ({relation: ''}));
+        this.setState(() => ({group: ''}));
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const family = {
+            nameText: this.state.nameText,
+            gender: this.state.gender,
+            relation: this.state.relation,
+            group: this.state.group
+        };
+        this.props.passFamilyMember(family)
+        this.clearForm()
+    }
+
     render(){
         return(
             <div className="option">
-                <input type='text' placeholder='Full Name' name='fullName' onChange={this.onNameChange}/> <br />
-                <select value={this.state.gender} onSubmit={this.handleSexChange}>
-                    <option key="male">Male</option>
-                    <option key="female">Female</option>
-                    <option key="noAnswer">Prefer Not to Answer</option>
-                </select> <br />
-                <select value={this.state.relation} onSubmit={this.handleRelationChange}>
-                    <option key="son">Son</option>
-                    <option key="daughter">Daughter</option>
-                    <option key="wife">Wife</option>
-                    <option key="husband">Husband</option>
-                    <option key="sibling">Sibling</option>
-                </select> <br />     
-                <select value={this.state.group} onSubmit={this.handleGroupChange}>
-                    <option key="children">Children</option>
-                    <option key="youth">Youth</option>
-                    <option key="campus">Campus</option>
-                    <option key="adult">Adult</option>
-                </select> <br />
-            </div>
+                <form onSubmit={this.onSubmit}>
+                    <input type='text' placeholder='Full Name' name='fullName' onChange={this.onNameChange}/> <br />
+                    <div>Gender</div>
+                    <SelectOptions value={this.state.gender} onChange={this.handleSexChange} options={group}/><br />
+                    <div>Relationship</div> 
+                    <SelectOptions value={this.state.relation} onChange={this.handleRelationChange} options={relation} /><br/> 
+                    <div>Group</div>   
+                    <SelectOptions value={this.state.group} onChange={this.handleGroupChange} options={sex} /><br />
+                    <button type='reset'>Add Family</button>
+                </form>
+            </div> 
         );
     }
 }
