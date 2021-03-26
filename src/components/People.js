@@ -2,7 +2,6 @@ import React from 'react'
 
 import Family from './AddFamily';
 import {group, sex, booleanValue} from './Fixtures';
-import SelectOptions from './SelectOptions';
 import RadioOptions from './RadioOptions';
 
 import './people.css'
@@ -39,6 +38,7 @@ class People extends React.Component {
   
     handleOthers = (val) => {
       if(val){
+        console.log(val)
         this.setState(prevState => ({
           passChild: [...prevState.passChild, val]
         }))
@@ -73,13 +73,18 @@ class People extends React.Component {
                     <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
                     <div className="Radios">
-                      <h4>Group</h4> <br />
-                      <RadioOptions onChange={this.handleSelectChange} options={group} name="group" />
-                      <h4>Gender</h4> <br />
-                      <RadioOptions onChange={this.handleSexChange} options={sex} name="gender" />
+                      <div className="col">
+                        <h4>Group</h4> <br />
+                        <RadioOptions onChange={this.handleSelectChange} options={group} name="group" />
+                      </div>
+                      <div className="col1">
+                        <h4>Gender</h4> <br />
+                        <RadioOptions onChange={this.handleSexChange} options={sex} name="gender" />
+                      </div>
                     </div>
                     <h4>Is today your first time? </h4> <br />
                     <RadioOptions onChange={this.handleComers} options={booleanValue} name="firstTimer" />
+                    
                     <h4>Add Family/Accompanying Members? </h4> <br />
                     <RadioOptions onChange={this.handleAddFamily} options={booleanValue} name="company"/>
                     {this.state.addFamilyMember && <Family passFamilyMember={this.handleOthers}/>}

@@ -10,12 +10,18 @@
     width: 54%;
 }
 
-.People form .Radios .col {
-    width: 50%;
-    float: left;
+.Radios {
+    height:auto;
+    display: flex;
 }
 
-.People form .Radios .col1 {
+.Radios .col {
+    width: 30%;
+    float: left;
+    margin-left: 16%;
+}
+
+.Radios .col1 {
     width: 50%;
     float: right;
 }
@@ -125,13 +131,20 @@
     width: 85%;
 }
 
-.People .option form div{
+.People .option form div {
     border-width: thin;
     font-size: medium;
     margin: 0 3% 5px;
     color: aliceblue;
     width: 85%;
 }
+
+.People .option form div input[type=radio] {
+    color: white;
+    margin: 0 3% 5px;
+
+}
+
 
 .People .option form button {
     width: 40%;
@@ -144,32 +157,6 @@
     cursor: pointer;
 }
 
-.People .Child  div input{
-    width: 90%;
-    height: 42px;
-    border-width: thin;
-    font-size: medium;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 5px auto 5px;
-}
-
 .People .familyButton{
     color: #ccc;
-}
-
-.People .Child  div select{
-    width: 90%;
-    height: 42px;
-    border-width: thin;
-    font-size: medium;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 0 auto 0;
-}
-
-.People .Child  div h4{
-    font-size: medium;
-    margin: 5px 5% 0;
-    text-align: left;
 }

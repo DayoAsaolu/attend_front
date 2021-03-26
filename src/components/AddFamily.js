@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {group, sex, relation} from './Fixtures';
-import SelectOptions from './SelectOptions';
+import RadioOptions from './RadioOptions';
 
 import './people.css'
 
@@ -10,16 +10,22 @@ class Family extends React.Component{
         super(props)
   
         this.state = {
-          nameText: undefined,
+          familyFirstName: undefined,
+          familyLastName: undefined,
           gender: undefined,
           relation: undefined,
           group: undefined
         }
     }
     
-    onNameChange = (e) => {
-        const nameText = e.target.value;
-        this.setState(() => ({ nameText }));
+    onfirstNameChange = (e) => {
+        const familyFirstName = e.target.value;
+        this.setState(() => ({ familyFirstName }));
+    };
+
+    onlastNameChange = (e) => {
+        const familyLastName = e.target.value;
+        this.setState(() => ({ familyLastName }));
     };
 
     handleSexChange = (e) => {
@@ -35,37 +41,47 @@ class Family extends React.Component{
         this.setState({group: e.target.value});
     };
 
-    clearForm = () => {
-        this.setState(() => ({nameText: ''}));
-        this.setState(() => ({gender: ''}));
-        this.setState(() => ({relation: ''}));
-        this.setState(() => ({group: ''}));
+    clearForm = (e) => {
+        this.setState({familyFirstName: ''});
+        this.setState({familyLastName: ''});
+        this.setState({gender: ''});
+        this.setState({relation: ''});
+        this.setState({group: ''});
     }
 
     onSubmit = (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         const family = {
-            nameText: this.state.nameText,
+            familyFirstName: this.state.familyFirstName,
+            familyLastName: this.state.familyLastName,
             gender: this.state.gender,
             relation: this.state.relation,
             group: this.state.group
         };
-        this.props.passFamilyMember(family)
-        this.clearForm()
+        this.props.passFamilyMember(family);
     }
 
     render(){
         return(
             <div className="option">
-                <form onSubmit={this.onSubmit}>
-                    <input type='text' placeholder='Full Name' name='fullName' onChange={this.onNameChange}/> <br />
-                    <div>Gender</div>
-                    <SelectOptions value={this.state.gender} onChange={this.handleSexChange} options={group}/><br />
-                    <div>Relationship</div> 
-                    <SelectOptions value={this.state.relation} onChange={this.handleRelationChange} options={relation} /><br/> 
-                    <div>Group</div>   
-                    <SelectOptions value={this.state.group} onChange={this.handleGroupChange} options={sex} /><br />
-                    <button type='reset'>Add Family</button>
+                <form>
+                    <input type='text' placeholder='First Name' name='firstName' onChange={this.onfirstNameChange} required/> <br />
+                    <input type="text" placeholder="Last Name" name="lastName" onChange={this.onlastNameChange} required/> <br />
+                    <div className="Radios">
+                        <div className="col">
+                            <div>Gender</div>
+                            <RadioOptions onChange={this.handleSexChange} options={sex} name="gender"/><br />
+                        </div>
+                        <div className="col1">
+                            <div>Relationship</div> 
+                            <RadioOptions onChange={this.handleRelationChange} options={relation} name="relation"/><br/> 
+                        </div>
+                        <div className="col2">
+                            <div>Group</div>   
+                            <RadioOptions onChange={this.handleGroupChange} options={group} name="group"/><br />
+                        </div>
+                    </div>
+                    <button type="reset" onClick={this.onSubmit}>Add Family</button>
                 </form>
             </div> 
         );
