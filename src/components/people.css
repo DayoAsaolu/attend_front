@@ -1,0 +1,173 @@
+.People {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    .People {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    .People form{
+        margin: auto;
+        width: 100%;
+    }
+}
+
+.People form{
+    margin: auto;
+    width: 100%;
+}
+
+.Radios {
+    height:auto;
+    display: flex;
+}
+
+.Radios .col {
+    width: 30%;
+    float: left;
+    margin-left: 16%;
+}
+
+.Radios .col1 {
+    width: 50%;
+    float: right;
+}
+
+.People input[type=text], select{
+    width: 50%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 23% 10px;
+}
+
+.People button {
+    width: 50%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 23% 10px;
+    cursor: pointer;
+}
+
+.People .AddFamily {
+    width: 35%;
+    height: 42px;
+    border-width: thin;
+    background: white;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 7px 1% 10px;
+}
+
+.People h1 {
+    color: white;
+}
+
+.People h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.People h3 {
+    color: white;
+    margin: 0 30% 10px;
+}
+
+.People form h4, input[type=radio] {
+    color: white;
+    margin: 5px 23% 0;
+
+}
+
+.People input[type=radio] {
+    color: white;
+    margin: 5px 15px 15px 23%;
+
+}
+
+.People label {
+    color: white;
+}
+
+.People .option form{
+    height:max-content;
+    font-size: medium;
+    border: 1px solid #ccc;
+    width: 50%;
+    margin: 0 23% 10px;
+}
+
+.People .option form input[type=text]{
+    width: 85%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 3% 10px;
+}
+
+.People .option form select{
+    width: 85%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 3% 5px;
+}
+
+.People .option form h4{
+    margin: 0 3% 10px;
+    font-size: medium;
+    text-align: left;
+    width: 85%;
+}
+
+.People .option form div {
+    border-width: thin;
+    font-size: medium;
+    margin: 0 3% 5px;
+    color: aliceblue;
+    width: 85%;
+}
+
+.People .option form div input[type=radio] {
+    color: white;
+    margin: 0 3% 5px;
+
+}
+
+
+.People .option form button {
+    width: 40%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px 3% 10px;
+    cursor: pointer;
+}
+
+.People .familyButton{
+    color: #ccc;
+}
