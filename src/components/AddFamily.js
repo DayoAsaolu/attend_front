@@ -3,6 +3,8 @@ import React from 'react';
 import {group, sex, relation} from './Fixtures';
 import RadioOptions from './RadioOptions';
 
+import { alert } from 'react-alert-confirm';
+import "react-alert-confirm/dist/index.css";
 import './people.css'
 
 class Family extends React.Component{
@@ -11,7 +13,7 @@ class Family extends React.Component{
   
         this.state = {
           familyFirstName: undefined,
-          familyLastName: undefined,
+          familyLastName: props.passLastName,
           gender: undefined,
           relation: undefined,
           group: undefined
@@ -49,6 +51,14 @@ class Family extends React.Component{
         this.setState({group: ''});
     }
 
+    alertConfirmation = (fname, lname) => {
+        alert({
+          title: `Added ${fname} ${lname}`,
+          okText: "OK"
+        })
+    }
+    
+
     onSubmit = (e) => {
         //e.preventDefault();
         const family = {
@@ -59,6 +69,7 @@ class Family extends React.Component{
             group: this.state.group
         };
         this.props.passFamilyMember(family);
+        this.alertConfirmation(family.familyFirstName, family.familyLastName)
     }
 
     render(){
@@ -66,7 +77,7 @@ class Family extends React.Component{
             <div className="option">
                 <form>
                     <input type='text' placeholder='First Name' name='firstName' onChange={this.onfirstNameChange} required/> <br />
-                    <input type="text" placeholder="Last Name" name="lastName" onChange={this.onlastNameChange} required/> <br />
+                    <input type="text" placeholder="Last Name" name="lastName" value={this.state.familyLastName} onChange={this.onlastNameChange} required/> <br />
                     <div className="Radios">
                         <div className="col">
                             <div>Gender</div>

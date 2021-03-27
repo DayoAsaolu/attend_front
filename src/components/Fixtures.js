@@ -1,5 +1,5 @@
 const group = ['Children', 'Youth', 'Campus', 'Adult'];
-const sex = ['Male', 'Female', 'Prefer not to answer'];
+const sex = ['Male', 'Female'];
 const relation = ['Son', 'Daughter', 'Sibling', 'Parent', 'Husband', 'Wife']
 const booleanValue = ['Yes', 'No']
 

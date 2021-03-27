@@ -4,6 +4,7 @@ import Family from './AddFamily';
 import {group, sex, booleanValue} from './Fixtures';
 import RadioOptions from './RadioOptions';
 
+import { alert } from 'react-alert-confirm';
 import './people.css'
 
 class People extends React.Component {
@@ -12,22 +13,69 @@ class People extends React.Component {
       super(props)
 
       this.state = {
-        firstName: undefined,
-        lastName: undefined,
+        firstName: "",
+        lastName: "",
         value: undefined,
         gender: undefined,
         firstTime: undefined,
+        email: undefined,
+        phone: undefined,
         addFamilyMember: false,
         passChild: []
       }
     }
 
-
-    handleClickSignUp = (e) => {
-        e.preventDefault();
-        console.log(this.state)
+    clearForm = (e) => {
+        this.setState({firstName: ""});
+        this.setState({lastName: ""});
+        this.setState({gender: ''});
+        this.setState({value: ''});
+        this.setState({email: ''});
     }
 
+    handleOnSubmit = (e) => {
+      e.preventDefault();
+      if (this.state.firstName === "" || this.state.lastName === ""){
+        alert({
+          title: "Please enter required fields.",
+          okText: "OK"
+        })
+      } else {
+        this.getUsers(this.state);
+      }
+      this.clearForm();
+      document.getElementById("add-family-form").reset();
+    }
+
+    async getUsers(data) {
+      fetch('https://attendance-dayo.herokuapp.com/posts', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+      .then(response => {
+        alert({
+          title: "Submission successful",
+          okText: "OK"
+        })
+        })
+        .catch(error => {
+          console.error(
+            "There has been a problem with your fetch operation:",
+            error
+          );
+        });
+      }
+
+    alertConfirmation = () => {
+      alert({
+        title: "Submission successful",
+        okText: "OK"
+      })
+    }
+    
     handleSelectChange = (e) => {
       this.setState({value: e.target.value});
     }
@@ -65,11 +113,22 @@ class People extends React.Component {
       this.setState({ lastName });
     }
 
+    handleEmailAddress = (e) => {
+      const email = e.target.value;
+      this.setState({ email });
+    }
+
+    handlePhoneNumber = (e) => {
+      const phone = e.target.value;
+      this.setState({ phone });
+    }
+
+
     render(){
         return (
             <div className="People">
                 <h1>Welcome to the Attendance Page</h1>
-                <form onSubmit={this.handleClickSignUp}>
+                <form id="add-family-form">
                     <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
                     <div className="Radios">
@@ -84,11 +143,16 @@ class People extends React.Component {
                     </div>
                     <h4>Is today your first time? </h4> <br />
                     <RadioOptions onChange={this.handleComers} options={booleanValue} name="firstTimer" />
-                    
+                    {this.state.firstTime && 
+                      <div>
+                        <input type="text" placeholder="Email Address" name="mail" onChange={this.handleEmailAddress} required/> <br />
+                        <input type="text" placeholder="Phone number" name="phone" onChange={this.handlePhoneNumber} required/> <br />
+                      </div>
+                    }
                     <h4>Add Family/Accompanying Members? </h4> <br />
                     <RadioOptions onChange={this.handleAddFamily} options={booleanValue} name="company"/>
-                    {this.state.addFamilyMember && <Family passFamilyMember={this.handleOthers}/>}
-                    <button>Register</button>
+                    {this.state.addFamilyMember && <Family passLastName={this.state.lastName} passFamilyMember={this.handleOthers}/>}
+                    <button type="reset" onClick={this.handleOnSubmit}>Register</button>
                 </form>
             </div>
         );
