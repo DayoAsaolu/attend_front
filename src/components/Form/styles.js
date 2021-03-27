@@ -8,8 +8,23 @@ export default makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    marginTop: '5px'
+    marginTop: '5px',
   },
+  
+  Q1list: {
+    marginTop: '-5px',
+    fontSize: '13px'
+  },
+
+  Q1listInner: {
+    marginTop: '-5px',
+    marginBottom: '-7px',
+  },
+
+  QInnerList: {
+    marginTop: '-20px'
+  },
+  
   paper1: {
     padding: theme.spacing(2),
     backgroundColor: 'rgb(136, 149, 168)',
