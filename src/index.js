@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 
 import { reducers } from './reducers';
 import People from './components/People';
+import Main from './components/MainComponent';
 import './index.css';
 
 
@@ -14,7 +15,7 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)));
 ReactDOM.render(
  
   <Provider store={store}>
-    <People />
+    <Main />
   </Provider>,
     document.getElementById('root'),
 );
