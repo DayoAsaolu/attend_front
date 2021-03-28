@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import { reducers } from './reducers';
-import People from './components/People';
 import Main from './components/MainComponent';
 import './index.css';
 

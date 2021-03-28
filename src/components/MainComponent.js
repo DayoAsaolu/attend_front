@@ -9,7 +9,8 @@ class Main extends React.Component{
   
         this.state = {
           show1: true,
-          show2: false
+          show2: false,
+          sendToZoom: false
         }
     }
     
@@ -20,11 +21,18 @@ class Main extends React.Component{
             this.setState({show2: true})
         }
     }
+
+    handleYesCase = (value) => {
+        if(value){
+            this.setState({sendToZoom : true});
+        }
+    }
+
     render(){
         return(
             <div>
-                {this.state.show1 && <Questions showForm={this.handleQuestions}/>}
-                {this.state.show2 && <People />}
+                {this.state.show1 && <Questions showForm={this.handleQuestions} toZoom={this.handleYesCase}/>}
+                {this.state.show2 && <People goToZoom={this.state.sendToZoom}/>}
             </div>
         )
     }

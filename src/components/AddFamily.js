@@ -68,8 +68,16 @@ class Family extends React.Component{
             relation: this.state.relation,
             group: this.state.group
         };
-        this.props.passFamilyMember(family);
-        this.alertConfirmation(family.familyFirstName, family.familyLastName)
+        if (this.state.familyFirstName === "" || this.state.familyLastName === ""){
+            alert({
+              title: "Please enter required fields.",
+              okText: "OK"
+            })
+        } else {
+            this.props.passFamilyMember(family);
+            this.alertConfirmation(family.familyFirstName, family.familyLastName)
+            this.clearForm();
+        }
     }
 
     render(){

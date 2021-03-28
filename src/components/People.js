@@ -56,10 +56,17 @@ class People extends React.Component {
         }
       })
       .then(response => {
-        alert({
-          title: "Submission successful",
-          okText: "OK"
-        })
+        if(this.props.goToZoom){
+          alert({
+            title: "Based on your response, please worship with us on zoom. Thank you.",
+            okText: "OK"
+          })
+        } else {
+          alert({
+            title: "Submission successful.",
+            okText: "OK"
+          })
+        }
         })
         .catch(error => {
           console.error(

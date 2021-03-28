@@ -32,14 +32,22 @@ class Questions extends React.Component {
 
             this.props.showForm(true);
       }else{
-            Object.keys(this.state).map(i => {
-                alert(this.state[i])
-            });
-
-            //alert({
-            //title: "Please answer required questions",
-            //okText: "OK"
-            //})
+            const responses = [this.state.Q1, this.state.Q2, this.state.Q3, this.state.Q4, this.state.Q5];
+            var countResponse = 0;
+            responses.map((response, index) => {
+                if(response === "yes" || response==="no"){
+                    countResponse++;
+                }
+            })
+            if(countResponse !== 5){
+                alert({
+                    title: "Please enter all required fields",
+                    okText: "OK"
+                })
+            } else {
+                this.props.showForm(true);
+                this.props.toZoom(true);
+            }
         }
     };
 

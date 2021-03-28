@@ -176,3 +176,14 @@
 .Questions {
     background: #ccc;
 }
+
+.Questions button {
+    width: 10%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px 13% 10px;
+    cursor: pointer;
+}
