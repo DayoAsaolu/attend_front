@@ -63,10 +63,7 @@ class People extends React.Component {
             okText: "OK"
           })
         } else {
-          alert({
-            title: "Submission successful.",
-            okText: "OK"
-          })
+          setTimeout(function(){ alert("Submission Complete"); }, 2000)
         }
         })
         .catch(error => {
