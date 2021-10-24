@@ -140,7 +140,7 @@ class Questions extends React.Component {
                     </RadioGroup>
                 </ul> 
 
-                <button onClick={this.handleClickBasic}>Submit</button>
+                <button className="submitButton" onClick={this.handleClickBasic}>Submit</button>
             </div>
         )
     }
