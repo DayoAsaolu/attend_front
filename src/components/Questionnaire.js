@@ -4,7 +4,6 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { alert } from 'react-alert-confirm';
-import Download from './TestExcel';
 
 import './people.css'
 
@@ -142,8 +141,6 @@ class Questions extends React.Component {
                 </ul> 
 
                 <button onClick={this.handleClickBasic}>Submit</button>
-
-                <Download />
             </div>
         )
     }
