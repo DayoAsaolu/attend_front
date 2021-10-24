@@ -31,6 +31,7 @@ class People extends React.Component {
         this.setState({gender: ''});
         this.setState({value: ''});
         this.setState({email: ''});
+        this.setState({phone: ''});
     }
 
     handleOnSubmit = (e) => {
@@ -41,6 +42,7 @@ class People extends React.Component {
           okText: "OK"
         })
       } else {
+        console.log(this.state);
         this.getUsers(this.state);
       }
       this.clearForm();
@@ -48,7 +50,7 @@ class People extends React.Component {
     }
 
     async getUsers(data) {
-      fetch('https://attendance-dayo.herokuapp.com/posts', {
+      fetch('http://localhost:9000/posts', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -138,6 +140,7 @@ class People extends React.Component {
                 <form id="add-family-form">
                     <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
+                    <input type="text" placeholder="Phone number" name="phone" onChange={this.handlePhoneNumber} required/> <br />
                     <div className="Radios">
                       <div className="col">
                         <h4>Group</h4> <br />
@@ -153,7 +156,6 @@ class People extends React.Component {
                     {this.state.firstTime && 
                       <div>
                         <input type="text" placeholder="Email Address" name="mail" onChange={this.handleEmailAddress} required/> <br />
-                        <input type="text" placeholder="Phone number" name="phone" onChange={this.handlePhoneNumber} required/> <br />
                       </div>
                     }
                     <h4>Add Family/Accompanying Members? </h4> <br />

@@ -4,9 +4,9 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { alert } from 'react-alert-confirm';
+import Download from './TestExcel';
 
 import './people.css'
-
 
 class Questions extends React.Component {
 
@@ -18,7 +18,8 @@ class Questions extends React.Component {
           Q2: "",
           Q3: "",
           Q4: "",
-          Q5: ""
+          Q5: "",
+          Q6: undefined
         }
     }
   
@@ -38,6 +39,7 @@ class Questions extends React.Component {
                 if(response === "yes" || response==="no"){
                     countResponse++;
                 }
+                return countResponse
             })
             if(countResponse !== 5){
                 alert({
@@ -130,9 +132,18 @@ class Questions extends React.Component {
                     <FormControlLabel value="yes" control={<Radio />} label="yes"/>
                     <FormControlLabel value="no" control={<Radio />} label="no"/>
                     </RadioGroup>
+
+                    <li >Have you been vaccinated? </li>
+                    <RadioGroup name="Q6" onChange={(e) => this.setState({Q6: e.target.value})}>
+                    <FormControlLabel value="yes" control={<Radio />} label="yes"/>
+                    <FormControlLabel value="no" control={<Radio />} label="no"/>
+                    <FormControlLabel value="Prefer not to answer" control={<Radio />} label="prefer not to answer"/>
+                    </RadioGroup>
                 </ul> 
 
                 <button onClick={this.handleClickBasic}>Submit</button>
+
+                <Download />
             </div>
         )
     }

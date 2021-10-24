@@ -1,37 +1,24 @@
-import React, { useState } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import React from 'react';
 
-import Form from './components/Form/Form';
-import useStyles from './styles';
-import memories from './images/memories.png';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Main from './components/MainComponent';
+import Download from './components/TestExcel';
 
 const App = () => {
-  const [currentId, setCurrentId] = useState(0);
-  const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h4" align="center">Attendance</Typography>
-        <img className={classes.image} src={memories} alt="icon" height="40" />
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
+    <BrowserRouter>
+        <Switch>
+            <Route path="/" render={() => (
+                <Main />
+            )} exact={true} />
+            <Route path="/welcome" render={() => (
+                <Download />
+            )} />
+        </Switch>
+  </BrowserRouter>
 
-           
-          
-              
-            </Grid>
-          </Grid>
-
-        </Container>
-      </Grow>
-
-    
-    </Container>
   );
 };
 

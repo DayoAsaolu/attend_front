@@ -5,7 +5,7 @@ import Questions from './Questionnaire'
 
 class Main extends React.Component{
     constructor(props){
-        super(props)
+        super();
   
         this.state = {
           show1: true,
@@ -33,6 +33,7 @@ class Main extends React.Component{
             <div>
                 {this.state.show1 && <Questions showForm={this.handleQuestions} toZoom={this.handleYesCase}/>}
                 {this.state.show2 && <People goToZoom={this.state.sendToZoom}/>}
+                
             </div>
         )
     }
