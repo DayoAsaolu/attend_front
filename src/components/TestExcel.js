@@ -19,7 +19,8 @@ export default class Download extends React.Component {
     componentDidMount() {
         axios.get('http://localhost:9000/posts')
             .then(data => {
-                this.setState({data: data.data})
+                console.log(data);
+                this.setState({data: data.data});
             })
     }
     
@@ -29,9 +30,10 @@ export default class Download extends React.Component {
                 <ExcelSheet data={this.state.data} name="Attendance">
                     <ExcelColumn label="Date" value="createdAt"/>
                     <ExcelColumn label="First Name" value="firstName"/>
-                    <ExcelColumn label="Gender" value="gender"/>
                     <ExcelColumn label="Last name"
                                  value="lastName"/>
+                    <ExcelColumn label="Gender" value="gender"/>
+                    <ExcelColumn label="Phone" value="phone"/>
                 </ExcelSheet>
             </ExcelFile>
         );
