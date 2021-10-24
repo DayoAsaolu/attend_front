@@ -63,7 +63,7 @@ class People extends React.Component {
             okText: "OK"
           })
         } else {
-          setTimeout(function(){ alert("Submission Complete"); }, 2000)
+          alert("Submission Complete");
         }
         })
         .catch(error => {
@@ -75,10 +75,7 @@ class People extends React.Component {
       }
 
     alertConfirmation = () => {
-      alert({
-        title: "Submission successful",
-        okText: "OK"
-      })
+      alert("Submission Successful");
     }
     
     handleSelectChange = (e) => {
