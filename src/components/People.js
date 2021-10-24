@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Family from './AddFamily';
 import {group, sex, booleanValue} from './Fixtures';
 import RadioOptions from './RadioOptions';
 
@@ -138,7 +137,7 @@ class People extends React.Component {
             <div className="People">
                 <h1>Welcome to the Attendance Page</h1>
                 <form id="add-family-form">
-                    <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
+                    <input type="text" placeholder="Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
                     <input type="text" placeholder="Phone number" name="phone" onChange={this.handlePhoneNumber} required/> <br />
                     <div className="Radios">
@@ -158,9 +157,6 @@ class People extends React.Component {
                         <input type="text" placeholder="Email Address" name="mail" onChange={this.handleEmailAddress} required/> <br />
                       </div>
                     }
-                    <h4>Add Family/Accompanying Members? </h4> <br />
-                    <RadioOptions onChange={this.handleAddFamily} options={booleanValue} name="company"/>
-                    {this.state.addFamilyMember && <Family passLastName={this.state.lastName} passFamilyMember={this.handleOthers}/>}
                     <button type="reset" onClick={this.handleOnSubmit}>Register</button>
                 </form>
             </div>
