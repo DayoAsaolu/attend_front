@@ -49,7 +49,7 @@ class People extends React.Component {
     }
 
     async getUsers(data) {
-      fetch('http://localhost:9000/posts', {
+      fetch('https://attendance-backen.herokuapp.com/posts', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
