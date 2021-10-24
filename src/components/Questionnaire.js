@@ -142,8 +142,6 @@ class Questions extends React.Component {
                 </ul> 
 
                 <button onClick={this.handleClickBasic}>Submit</button>
-
-                <Download />
             </div>
         )
     }
