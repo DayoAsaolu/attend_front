@@ -10,7 +10,8 @@ class Main extends React.Component{
         this.state = {
           show1: true,
           show2: false,
-          sendToZoom: false
+          sendToZoom: false,
+          vaxStatus: undefined
         }
     }
     
@@ -28,11 +29,17 @@ class Main extends React.Component{
         }
     }
 
+    vaxQ = (value) => {
+        if(value){
+            this.setState({vaxStatus : value})
+        }
+    }
+
     render(){
         return(
             <div>
-                {this.state.show1 && <Questions showForm={this.handleQuestions} toZoom={this.handleYesCase}/>}
-                {this.state.show2 && <People goToZoom={this.state.sendToZoom}/>}
+                {this.state.show1 && <Questions showForm={this.handleQuestions} toZoom={this.handleYesCase} getVaccineData={this.vaxQ}/>}
+                {this.state.show2 && <People goToZoom={this.state.sendToZoom} vaxStatus={this.state.vaxStatus}/>}
                 
             </div>
         )

@@ -31,6 +31,7 @@ class Questions extends React.Component {
             this.state.Q5 ==="no"){
 
             this.props.showForm(true);
+            this.props.getVaccineData(this.state.Q6);
       }else{
             const responses = [this.state.Q1, this.state.Q2, this.state.Q3, this.state.Q4, this.state.Q5];
             var countResponse = 0;

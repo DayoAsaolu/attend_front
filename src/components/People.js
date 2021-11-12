@@ -3,7 +3,6 @@ import React from 'react'
 import {group, sex, booleanValue} from './Fixtures';
 import RadioOptions from './RadioOptions';
 
-import { alert } from 'react-alert-confirm';
 import './people.css'
 
 class People extends React.Component {
@@ -36,12 +35,8 @@ class People extends React.Component {
     handleOnSubmit = (e) => {
       e.preventDefault();
       if (this.state.firstName === "" || this.state.lastName === ""){
-        alert({
-          title: "Please enter required fields.",
-          okText: "OK"
-        })
+        alert("Please enter required fields.")
       } else {
-        console.log(this.state);
         this.getUsers(this.state);
       }
       this.clearForm();
@@ -49,6 +44,7 @@ class People extends React.Component {
     }
 
     async getUsers(data) {
+      data["vaxStatus"] = this.props.vaxStatus;
       fetch('https://attendance-backen.herokuapp.com/posts', {
         method: "POST",
         body: JSON.stringify(data),
@@ -58,10 +54,7 @@ class People extends React.Component {
       })
       .then(response => {
         if(this.props.goToZoom){
-          alert({
-            title: "Based on your response, please worship with us on zoom. Thank you.",
-            okText: "OK"
-          })
+          alert("Based on your response, please worship with us on zoom. Thank you.")
         } else {
           alert("Submission Complete");
         }
