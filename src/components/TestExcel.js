@@ -26,7 +26,7 @@ export default class Download extends React.Component {
     
     render() {
         return (
-            <ExcelFile element={<button>Download Data</button>}>
+            <ExcelFile filename={`${new Date()}`} element={<button>Download Data</button>}>
                 <ExcelSheet data={this.state.data} name="Attendance">
                     <ExcelColumn label="Date" value="createdAt"/>
                     <ExcelColumn label="First Name" value="firstName"/>
@@ -34,6 +34,7 @@ export default class Download extends React.Component {
                                  value="lastName"/>
                     <ExcelColumn label="Gender" value="gender"/>
                     <ExcelColumn label="Phone" value="phone"/>
+                    <ExcelColumn label="Vaccinated" value="vaxStatus"/>
                 </ExcelSheet>
             </ExcelFile>
         );
