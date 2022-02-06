@@ -6,19 +6,6 @@
     width: 100%;
 }
 
-@media screen and (max-width: 700px) {
-    .People {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: stretch;
-    }
-    .People form{
-        margin: auto;
-        width: 100%;
-    }
-}
-
 .People form{
     margin: auto;
     width: 100%;
@@ -48,17 +35,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     margin: 0 23% 10px;
-}
-
-.People button {
-    width: 50%;
-    height: 42px;
-    border-width: thin;
-    font-size: medium;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 0 23% 10px;
-    cursor: pointer;
 }
 
 .People .AddFamily {
@@ -110,7 +86,7 @@
 .People .option form{
     height:max-content;
     font-size: medium;
-    border: 1px solid #ccc;
+    border-top: 2px solid #ccc;
     width: 50%;
     margin: 0 23% 10px;
 }
@@ -122,7 +98,8 @@
     font-size: medium;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin: 0 3% 10px;
+    margin: 1% 3% 10px;
+    padding-left: 10%;
 }
 
 .People .option form select{
@@ -156,15 +133,25 @@
 
 }
 
-
-.People .option form button {
-    width: 40%;
+.submitButton{
+    width: 52%;
     height: 42px;
     border-width: thin;
     font-size: medium;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin: 5px 3% 10px;
+    margin: 0 23% 10px;
+    cursor: pointer;
+}
+
+.addFamily {
+    width: 20%;
+    height: 42px;
+    border-width: thin;
+    font-size: medium;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 2% 23% 10px;
     cursor: pointer;
 }
 
@@ -187,4 +174,66 @@
     margin: 5px 13% 10px;
     cursor: pointer;
     background-color: 'white';
+}
+
+.familyFeature {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 2%;
+}
+
+.textFamily {
+    width: 80%;
+}
+
+.clickToAddFam {
+    margin-left: 35%;
+    margin-right: 40%;
+    height: 50px;
+}
+
+@media screen and (max-width: 800px) {
+    .People {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+
+    .People form{
+        width: 100%;
+    }
+
+    .People input[type=text], select{
+        width: 70%;
+        height: 42px;
+        border-width: thin;
+        font-size: medium;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin: 0 23% 10px;
+    }
+    
+    .People .AddFamily {
+        width: 65%;
+        height: 42px;
+        border-width: thin;
+        background: white;
+        font-size: medium;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        margin: 7px 1% 10px;
+    }
+
+    .clickToAddFam {
+        width: 700x;
+        height: 50px;
+    }
 }

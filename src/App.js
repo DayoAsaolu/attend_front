@@ -2,8 +2,9 @@ import React from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Main from './components/MainComponent';
-import Download from './components/TestExcel';
+//import Main from './components/MainComponent';
+import People from './components/People';
+//import Download from './components/TestExcel';
 
 const App = () => {
 
@@ -11,11 +12,8 @@ const App = () => {
     <BrowserRouter>
         <Switch>
             <Route path="/" render={() => (
-                <Main />
+                <People />
             )} exact={true} />
-            <Route path="/welcome" render={() => (
-                <Download />
-            )} />
         </Switch>
   </BrowserRouter>
 

@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
 
 import {group, sex, booleanValue} from './Fixtures';
 import RadioOptions from './RadioOptions';
+import Family from './AddFamily';
+
+import { db } from "../firebase.js";
 
 import './people.css'
 
@@ -13,12 +16,13 @@ class People extends React.Component {
       this.state = {
         firstName: "",
         lastName: "",
-        value: undefined,
-        gender: undefined,
-        firstTime: undefined,
-        email: undefined,
-        phone: undefined,
-        addFamilyMember: false,
+        value: "",
+        gender: "",
+        firstTime: "",
+        email: "",
+        phone: "",
+        addFamilyMember: [],
+        currentFamilyCount: 0,
         passChild: []
       }
     }
@@ -30,6 +34,7 @@ class People extends React.Component {
         this.setState({value: ''});
         this.setState({email: ''});
         this.setState({phone: ''});
+        this.setState({currentFamilyCount: 0});
     }
 
     handleOnSubmit = (e) => {
@@ -37,35 +42,32 @@ class People extends React.Component {
       if (this.state.firstName === "" || this.state.lastName === ""){
         alert("Please enter required fields.")
       } else {
-        this.getUsers(this.state);
+        const data = {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          sex: this.state.gender,
+          email: this.state.email,
+          phone: this.state.phone,
+          firstTime: this.state.firstTime,
+          family: this.state.passChild,
+          created: new Date() 
+        }
+
+        var d = new Date();
+        var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear()    
+        db.collection("attendance")
+          .doc(datestring)
+          .collection("people")
+          .doc(this.state.lastName)
+          .set(data)
+          .then(() => {
+            alert(`Registered ${this.state.firstName} ${this.state.lastName}`)
+          })
       }
+
       this.clearForm();
       document.getElementById("add-family-form").reset();
     }
-
-    async getUsers(data) {
-      data["vaxStatus"] = this.props.vaxStatus;
-      fetch('https://attendance-backen.herokuapp.com/posts', {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
-      .then(response => {
-        if(this.props.goToZoom){
-          alert("Based on your response, please worship with us on zoom. Thank you.")
-        } else {
-          alert("Submission Complete");
-        }
-        })
-        .catch(error => {
-          console.error(
-            "There has been a problem with your fetch operation:",
-            error
-          );
-        });
-      }
 
     alertConfirmation = () => {
       alert("Submission Successful");
@@ -81,13 +83,13 @@ class People extends React.Component {
   
     handleOthers = (val) => {
       if(val){
-        console.log(val)
-        this.setState(prevState => ({
-          passChild: [...prevState.passChild, val]
-        }))
+        const data = [...this.state.passChild]
+        data.push(val)
+        this.setState({passChild: data}, () => {
+          console.log(this.state.passChild)
+        })
       }
     }
-
     handleAddFamily = (e) => {
       const familyValue = e.target.value === "Yes" ? true : false;
       this.setState({addFamilyMember: familyValue});
@@ -117,14 +119,18 @@ class People extends React.Component {
       const phone = e.target.value;
       this.setState({ phone });
     }
-
+    
+    handleFamilyCount = (e) => {
+      this.setState({ addFamilyMember: this.state.addFamilyMember
+        .concat(<Family passLastName={this.state.lastName} passFamilyMember={this.handleOthers}></Family>)})
+    }
 
     render(){
         return (
             <div className="People">
                 <h1>Welcome to the Attendance Page</h1>
                 <form id="add-family-form">
-                    <input type="text" placeholder="Name" name="fname" onChange={this.handleFirstName} required/> <br />
+                    <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
                     <input type="text" placeholder="Phone number" name="phone" onChange={this.handlePhoneNumber} required/> <br />
                     <div className="Radios">
@@ -144,7 +150,10 @@ class People extends React.Component {
                         <input type="text" placeholder="Email Address" name="mail" onChange={this.handleEmailAddress} required/> <br />
                       </div>
                     }
-                    <button type="reset" onClick={this.handleOnSubmit}>Register</button>
+                    <h4>Add Family/Accompanying Members? </h4> 
+                    <button onClick={this.handleFamilyCount} className="addFamily">Add Family</button>
+                    {this.state.addFamilyMember}
+                    <button className='submitButton' type="reset" onClick={this.handleOnSubmit}>Register</button>
                 </form>
             </div>
         );

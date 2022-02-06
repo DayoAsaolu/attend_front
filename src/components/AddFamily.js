@@ -3,7 +3,6 @@ import React from 'react';
 import {group, sex, relation} from './Fixtures';
 import RadioOptions from './RadioOptions';
 
-import { alert } from 'react-alert-confirm';
 import "react-alert-confirm/dist/index.css";
 import './people.css'
 
@@ -31,7 +30,6 @@ class Family extends React.Component{
     };
 
     handleSexChange = (e) => {
-        console.log(e.target.value)
         this.setState({gender: e.target.value});
     };
 
@@ -52,15 +50,12 @@ class Family extends React.Component{
     }
 
     alertConfirmation = (fname, lname) => {
-        alert({
-          title: `Added ${fname} ${lname}`,
-          okText: "OK"
-        })
+        alert(`Added ${fname} ${lname}`)
     }
     
 
     onSubmit = (e) => {
-        //e.preventDefault();
+        e.preventDefault();
         const family = {
             familyFirstName: this.state.familyFirstName,
             familyLastName: this.state.familyLastName,
@@ -69,10 +64,7 @@ class Family extends React.Component{
             group: this.state.group
         };
         if (this.state.familyFirstName === "" || this.state.familyLastName === ""){
-            alert({
-              title: "Please enter required fields.",
-              okText: "OK"
-            })
+            alert("Please enter required fields.")
         } else {
             this.props.passFamilyMember(family);
             this.alertConfirmation(family.familyFirstName, family.familyLastName)
@@ -83,6 +75,7 @@ class Family extends React.Component{
     render(){
         return(
             <div className="option">
+                <h3>Please click the "Click to Add Family" button for each family member added. Thanks.</h3>
                 <form>
                     <input type='text' placeholder='First Name' name='firstName' onChange={this.onfirstNameChange} required/> <br />
                     <input type="text" placeholder="Last Name" name="lastName" value={this.state.familyLastName} onChange={this.onlastNameChange} required/> <br />
@@ -100,7 +93,7 @@ class Family extends React.Component{
                             <RadioOptions onChange={this.handleGroupChange} options={group} name="group"/><br />
                         </div>
                     </div>
-                    <button type="reset" onClick={this.onSubmit}>Add Family</button>
+                    <button type="reset" className="clickToAddFam" onClick={this.onSubmit}> Click to Add Family</button>
                 </form>
             </div> 
         );
