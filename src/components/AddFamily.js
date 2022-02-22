@@ -75,25 +75,25 @@ class Family extends React.Component{
     render(){
         return(
             <div className="option">
-                <h3>Please click the "Click to Add Family" button for each family member added. Thanks.</h3>
+                <h3 style={{width: '80%'}}>Please click the "Click to Add Family" button for each family member added. Thanks.</h3>
                 <form>
                     <input type='text' placeholder='First Name' name='firstName' onChange={this.onfirstNameChange} required/> <br />
                     <input type="text" placeholder="Last Name" name="lastName" value={this.state.familyLastName} onChange={this.onlastNameChange} required/> <br />
-                    <div className="Radios">
+                    <div style={{width: '70%', display: 'flex', flexDirection: 'column'}}>
                         <div className="col">
-                            <div>Gender</div>
+                            <h4>Gender</h4>
                             <RadioOptions onChange={this.handleSexChange} options={sex} name="gender"/><br />
                         </div>
                         <div className="col1">
-                            <div>Relationship</div> 
+                            <h4>Relationship</h4> 
                             <RadioOptions onChange={this.handleRelationChange} options={relation} name="relation"/><br/> 
                         </div>
                         <div className="col2">
-                            <div>Group</div>   
+                            <h4>Group</h4>   
                             <RadioOptions onChange={this.handleGroupChange} options={group} name="group"/><br />
                         </div>
                     </div>
-                    <button type="reset" className="clickToAddFam" onClick={this.onSubmit}> Click to Add Family</button>
+                    <button style={{width: '40%'}} type="reset" className="clickToAddFam" onClick={this.onSubmit}> Click to Add Family</button>
                 </form>
             </div> 
         );
