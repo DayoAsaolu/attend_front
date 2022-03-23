@@ -53,8 +53,8 @@ class People extends React.Component {
       })
       .then(response => {
         if(this.props.goToZoom){
-          alert("Based on your response, please worship with us on zoom. Thank you.")
-        } else {
+          alert("Based on your response, please Join with us on zoom. Thank you.")
+        } else { 
           alert("Submission Complete");
         }
         })
@@ -113,7 +113,7 @@ class People extends React.Component {
     render(){
         return (
             <div className="People">
-                <h1>Register For Our Wedding?</h1>
+                <h1>Register for Lotachi & Nsikak wedding</h1>
                 {/* <h3>Please let us know whether or not you can make it to our wedding.</h3> */}
                 <form id="add-family-form">
                     <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
@@ -125,7 +125,7 @@ class People extends React.Component {
                     <input type="text" placeholder="Number of adults" name="noOfAdults" onChange={this.handleNoOfAdults} required/> <br />
                     <input type="text" placeholder="Number of children" name="noOfChildren" onChange={this.handleNoOfChildren} required/> <br />
 
-                    <input type="text" placeholder="Are there any dietary restrictions We should be aware of?" name="allergy" onChange={this.handleallergy} optional/> <br />
+                    <input type="text" placeholder="Are dietary restrictions?" name="allergy" onChange={this.handleallergy} optional/> <br />
 
                     <input type="text" placeholder="Message to the Bride and Groom" name="msg" onChange={this.handleMsgToBrideGroom} optional/> <br />
 
