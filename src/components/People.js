@@ -1,7 +1,5 @@
 import React from 'react'
 
-import {group, sex, booleanValue} from './Fixtures';
-import RadioOptions from './RadioOptions';
 
 import './people.css'
 
@@ -14,22 +12,22 @@ class People extends React.Component {
         firstName: "",
         lastName: "",
         value: undefined,
-        gender: undefined,
-        firstTime: undefined,
         email: undefined,
-        phone: undefined,
-        addFamilyMember: false,
-        passChild: []
+        noOfAdults: undefined,
+        noOfChildren: undefined,
+        msg: undefined,
+        // alllegry
       }
     }
 
     clearForm = (e) => {
         this.setState({firstName: ""});
         this.setState({lastName: ""});
-        this.setState({gender: ''});
         this.setState({value: ''});
         this.setState({email: ''});
-        this.setState({phone: ''});
+        this.setState({ noOfAdults: ''});
+        this.setState({ noOfChildren: ''});
+        this.setState({ message: ''})
     }
 
     handleOnSubmit = (e) => {
@@ -45,7 +43,7 @@ class People extends React.Component {
 
     async getUsers(data) {
       data["vaxStatus"] = this.props.vaxStatus;
-      fetch('https://attendance-backen.herokuapp.com/posts', {
+      fetch('https://registerapp001.herokuapp.com/posts', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -75,29 +73,6 @@ class People extends React.Component {
       this.setState({value: e.target.value});
     }
 
-    handleSexChange = (e) => {
-      this.setState({gender: e.target.value});
-    }
-  
-    handleOthers = (val) => {
-      if(val){
-        console.log(val)
-        this.setState(prevState => ({
-          passChild: [...prevState.passChild, val]
-        }))
-      }
-    }
-
-    handleAddFamily = (e) => {
-      const familyValue = e.target.value === "Yes" ? true : false;
-      this.setState({addFamilyMember: familyValue});
-    }
-
-    handleComers = (e) => {
-      const timeValue = e.target.value === "Yes" ? true : false;
-      this.setState({firstTime: timeValue});
-    }
-
     handleFirstName = (e) => {
       const firstName = e.target.value;
       this.setState({ firstName });
@@ -113,37 +88,43 @@ class People extends React.Component {
       this.setState({ email });
     }
 
-    handlePhoneNumber = (e) => {
-      const phone = e.target.value;
-      this.setState({ phone });
+    handleNoOfAdults = (e) => {
+      const noOfAdults = e.target.value;
+      this.setState({ noOfAdults })
     }
 
+    handleNoOfChildren = (e) => {
+      const noOfChildren = e.target.value;
+      this.setState({ noOfChildren })
+    }
+
+    handleMsgToBrideGroom = (e) => {
+      const message = e.target.value;
+      this.setState({ message })
+    }
 
     render(){
         return (
             <div className="People">
-                <h1>Welcome to the Attendance Page</h1>
+                <h1>Register For Our Wedding?</h1>
+                <h3>Please let us know whether or not you can make it to our wedding.</h3>
                 <form id="add-family-form">
-                    <input type="text" placeholder="Name" name="fname" onChange={this.handleFirstName} required/> <br />
+                    <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
-                    <input type="text" placeholder="Phone number" name="phone" onChange={this.handlePhoneNumber} required/> <br />
-                    <div className="Radios">
-                      <div className="col">
-                        <h4>Group</h4> <br />
-                        <RadioOptions onChange={this.handleSelectChange} options={group} name="group" />
-                      </div>
-                      <div className="col1">
-                        <h4>Gender</h4> <br />
-                        <RadioOptions onChange={this.handleSexChange} options={sex} name="gender" />
-                      </div>
-                    </div>
-                    <h4>Is today your first time? </h4> <br />
-                    <RadioOptions onChange={this.handleComers} options={booleanValue} name="firstTimer" />
-                    {this.state.firstTime && 
-                      <div>
-                        <input type="text" placeholder="Email Address" name="mail" onChange={this.handleEmailAddress} required/> <br />
-                      </div>
-                    }
+
+                  
+                    <input type="text" placeholder="Email Address" name="mail" onChange={this.handleEmailAddress} required/> <br />
+                    
+                    <input type="text" placeholder="Number of adults" name="noOfAdults" onChange={this.handleNoOfAdults} required/> <br />
+                    <input type="text" placeholder="Number of children" name="noOfChildren" onChange={this.handleNoOfChildren} required/> <br />
+
+                    <input type="text" placeholder="Message to the Bride and Groom" name="message" onChange={this.handleMsgToBrideGroom} optional/> <br />
+
+                    
+                    {/* email, no of adults, childeren, msg to the bride and groom */}
+
+
+                    
                     <button type="reset" onClick={this.handleOnSubmit}>Register</button>
                 </form>
             </div>

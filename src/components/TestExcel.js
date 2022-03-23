@@ -17,7 +17,7 @@ export default class Download extends React.Component {
     }
     
     componentDidMount() {
-        axios.get('https://attendance-backen.herokuapp.com/posts')
+        axios.get('https://registerapp001.herokuapp.com/posts')
             .then(data => {
                 console.log(data);
                 this.setState({data: data.data});
