@@ -17,6 +17,15 @@
         margin: auto;
         width: 100%;
     }
+    .People input[type=text], select{
+        width: 90%;
+        height: 42px;
+        border-width: thin;
+        font-size: medium;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        /* margin: 0 23% 10px; */
+    }
 }
 
 .People form{

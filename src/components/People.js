@@ -16,7 +16,7 @@ class People extends React.Component {
         noOfAdults: undefined,
         noOfChildren: undefined,
         msg: undefined,
-        // alllegry
+        allergy: undefined
       }
     }
 
@@ -27,7 +27,8 @@ class People extends React.Component {
         this.setState({email: ''});
         this.setState({ noOfAdults: ''});
         this.setState({ noOfChildren: ''});
-        this.setState({ message: ''})
+        this.setState({ msg: ''})
+        this.setState({ allergy: ''})
     }
 
     handleOnSubmit = (e) => {
@@ -98,16 +99,22 @@ class People extends React.Component {
       this.setState({ noOfChildren })
     }
 
+    
+    handleallergy = (e) => {
+      const allergy = e.target.value;
+      this.setState({ allergy })
+    }
+
     handleMsgToBrideGroom = (e) => {
-      const message = e.target.value;
-      this.setState({ message })
+      const msg = e.target.value;
+      this.setState({ msg })
     }
 
     render(){
         return (
             <div className="People">
                 <h1>Register For Our Wedding?</h1>
-                <h3>Please let us know whether or not you can make it to our wedding.</h3>
+                {/* <h3>Please let us know whether or not you can make it to our wedding.</h3> */}
                 <form id="add-family-form">
                     <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
@@ -118,10 +125,10 @@ class People extends React.Component {
                     <input type="text" placeholder="Number of adults" name="noOfAdults" onChange={this.handleNoOfAdults} required/> <br />
                     <input type="text" placeholder="Number of children" name="noOfChildren" onChange={this.handleNoOfChildren} required/> <br />
 
-                    <input type="text" placeholder="Message to the Bride and Groom" name="message" onChange={this.handleMsgToBrideGroom} optional/> <br />
+                    <input type="text" placeholder="Are there any dietary restrictions We should be aware of?" name="allergy" onChange={this.handleallergy} optional/> <br />
 
-                    
-                    {/* email, no of adults, childeren, msg to the bride and groom */}
+                    <input type="text" placeholder="Message to the Bride and Groom" name="msg" onChange={this.handleMsgToBrideGroom} optional/> <br />
+
 
 
                     

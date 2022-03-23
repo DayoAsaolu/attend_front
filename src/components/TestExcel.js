@@ -30,11 +30,13 @@ export default class Download extends React.Component {
                 <ExcelSheet data={this.state.data} name="Attendance">
                     <ExcelColumn label="Date" value="createdAt"/>
                     <ExcelColumn label="First Name" value="firstName"/>
-                    <ExcelColumn label="Last name"
-                                 value="lastName"/>
-                    <ExcelColumn label="Gender" value="gender"/>
-                    <ExcelColumn label="Phone" value="phone"/>
+                    <ExcelColumn label="Last name"value="lastName"/>
+                    <ExcelColumn label="email" value="email"/>
+                    <ExcelColumn label="noOfAdults" value="noOfAdults"/>
                     <ExcelColumn label="Vaccinated" value="vaxStatus"/>
+                    <ExcelColumn label="noOfChildren" value="noOfChildren"/>
+                    <ExcelColumn label="allergy" value="allergy"/>
+                    <ExcelColumn label="msg" value="msg"/>
                 </ExcelSheet>
             </ExcelFile>
         );
