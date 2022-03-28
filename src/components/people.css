@@ -1,5 +1,6 @@
 .People {
-    display: flex;
+    display: block;
+    margin: auto;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
@@ -8,55 +9,33 @@
 
 @media screen and (max-width: 700px) {
     .People {
-        display: flex;
+        display: block;
+        margin: auto;
         flex-direction: column;
         justify-content: space-between;
         align-items: stretch;
     }
     .People form{
-        margin: auto;
         width: 100%;
+        align-self: center;
     }
     .People input[type=text], select{
-        width: 90%;
+        width: auto;
         height: 42px;
         border-width: thin;
         font-size: medium;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        /* margin: 0 23% 10px; */
     }
 }
 
-.People form{
-    margin: auto;
-    width: 100%;
-}
-
-.Radios {
-    height:auto;
-    display: flex;
-}
-
-.Radios .col {
-    width: 30%;
-    float: left;
-    margin-left: 16%;
-}
-
-.Radios .col1 {
-    width: 50%;
-    float: right;
-}
 
 .People input[type=text], select{
-    width: 50%;
+    width: 70%;
     height: 42px;
     border-width: thin;
     font-size: medium;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin: 0 23% 10px;
+    margin: 10px 50px 2px;
 }
 
 .People button {
@@ -67,6 +46,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     margin: 0 23% 10px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -87,17 +67,15 @@
 
 .People h1 {
     color: white;
-}
-
-.People h1 {
-    color: white;
     text-align: center;
     margin-bottom: 45px;
 }
 
 .People h3 {
     color: white;
-    margin: 0 30% 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .People form h4, input[type=radio] {
@@ -106,11 +84,11 @@
 
 }
 
-.People input[type=radio] {
+/* .People input[type=radio] {
     color: white;
     margin: 5px 15px 15px 23%;
 
-}
+} */
 
 .People label {
     color: white;

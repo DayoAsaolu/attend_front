@@ -36,6 +36,8 @@ export default class Download extends React.Component {
                     <ExcelColumn label="Vaccinated" value="vaxStatus"/>
                     <ExcelColumn label="noOfChildren" value="noOfChildren"/>
                     <ExcelColumn label="allergy" value="allergy"/>
+                    <ExcelColumn label="PhoneNo" value="PhoneNo"/>
+                    <ExcelColumn label="location" value="location"/>
                     <ExcelColumn label="msg" value="msg"/>
                 </ExcelSheet>
             </ExcelFile>

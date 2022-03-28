@@ -13,6 +13,8 @@ class People extends React.Component {
         lastName: "",
         value: undefined,
         email: undefined,
+        PhoneNo: undefined, 
+        location: undefined,
         noOfAdults: undefined,
         noOfChildren: undefined,
         msg: undefined,
@@ -28,13 +30,15 @@ class People extends React.Component {
         this.setState({ noOfAdults: ''});
         this.setState({ noOfChildren: ''});
         this.setState({ msg: ''})
+        this.setState({ PhoneNo: ''})
+        this.setState({ location: ''})
         this.setState({ allergy: ''})
     }
 
     handleOnSubmit = (e) => {
       e.preventDefault();
       if (this.state.firstName === "" || this.state.lastName === ""){
-        alert("Please enter required fields.")
+        alert("Please enter required fields. first and last name required")
       } else {
         this.getUsers(this.state);
       }
@@ -110,15 +114,26 @@ class People extends React.Component {
       this.setState({ msg })
     }
 
+    handlePhoneNo = (e) => {
+      const PhoneNo = e.target.value;
+      this.setState({ PhoneNo })
+    }
+
+    handleLocation =  (e) => {
+      const location = e.target.value;
+      this.setState({ location })
+    }
+
     render(){
         return (
             <div className="People">
-                <h1>Register for Lotachi & Nsikak wedding</h1>
+                <h3>Register for Lotachi & Nsikak's wedding</h3>
                 {/* <h3>Please let us know whether or not you can make it to our wedding.</h3> */}
                 <form id="add-family-form">
                     <input type="text" placeholder="First Name" name="fname" onChange={this.handleFirstName} required/> <br />
                     <input type="text" placeholder="Last Name" name="lname" onChange={this.handleLastName} required/> <br />
-
+                    <input type="text" placeholder="Phone Number" name="mail" onChange={this.handlePhoneNo} required/> <br />
+                    <input type="text" placeholder="City" name="mail" onChange={this.handleLocation} required/> <br />
                   
                     <input type="text" placeholder="Email Address" name="mail" onChange={this.handleEmailAddress} required/> <br />
                     
