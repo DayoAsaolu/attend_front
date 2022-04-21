@@ -140,7 +140,7 @@ class People extends React.Component {
                     <input type="text" placeholder="Number of adults" name="noOfAdults" onChange={this.handleNoOfAdults} required/> <br />
                     <input type="text" placeholder="Number of children" name="noOfChildren" onChange={this.handleNoOfChildren} required/> <br />
 
-                    <input type="text" placeholder="Are dietary restrictions?" name="allergy" onChange={this.handleallergy} optional/> <br />
+                    <input type="text" placeholder="Any dietary restrictions?" name="allergy" onChange={this.handleallergy} optional/> <br />
 
                     <input type="text" placeholder="Message to the Bride and Groom" name="msg" onChange={this.handleMsgToBrideGroom} optional/> <br />
 

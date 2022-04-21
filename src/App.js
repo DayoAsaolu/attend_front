@@ -14,7 +14,7 @@ const App = () => {
                 <Main />
             )} exact={true} />
             <Route path="/welcome" render={() => (
-                <Download />
+                <Download exact={true} />
             )} />
         </Switch>
   </BrowserRouter>
